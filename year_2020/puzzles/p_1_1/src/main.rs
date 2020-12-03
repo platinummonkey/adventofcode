@@ -14,13 +14,16 @@ fn main() {
         }
     }
 
-    for i in 0..all_values.len()-1 {
-        for j in i+1..all_values.len() {
-            for k in j+1..all_values.len() {
-                if  all_values[i] + all_values[j] + all_values[k] == 2020 {
+    for i in 0..all_values.len() - 1 {
+        for j in i + 1..all_values.len() {
+            for k in j + 1..all_values.len() {
+                if all_values[i] + all_values[j] + all_values[k] == 2020 {
                     let val = all_values[i] * all_values[j] * all_values[k];
-                    println!("found pair = {}(i={}) and {}(j={}) and {}(k={}) value={}", all_values[i], i, all_values[j], j, all_values[k], k, val);
-                    return
+                    println!(
+                        "found pair = {}(i={}) and {}(j={}) and {}(k={}) value={}",
+                        all_values[i], i, all_values[j], j, all_values[k], k, val
+                    );
+                    return;
                 }
             }
         }
@@ -30,7 +33,9 @@ fn main() {
 // The output is wrapped in a Result to allow matching on errors
 // Returns an Iterator to the Reader of the lines of the file.
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-    where P: AsRef<Path>, {
+where
+    P: AsRef<Path>,
+{
     let file = File::open(filename)?;
     Ok(io::BufReader::new(file).lines())
 }
