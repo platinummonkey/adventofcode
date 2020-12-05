@@ -1,5 +1,5 @@
 [package]
-name = "year_2020"
+name = "p_5"
 version = "0.1.0"
 authors = ["Cody Lee <cody.lee@datadoghq.com>"]
 edition = "2018"
@@ -7,12 +7,3 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-
-[workspace]
-members = [
-    "puzzles/p_1_1",
-    "puzzles/p_2",
-    "puzzles/p_3",
-    "puzzles/p_4",
-    "puzzles/p_5",
-]
