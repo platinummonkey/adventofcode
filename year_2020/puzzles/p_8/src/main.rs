@@ -5,11 +5,11 @@ use util::*;
 fn main() {
     println!(
         "part 1 accumulator value={}",
-        part_1("puzzles/p_8/data/input".into())
+        part_1("puzzles/p_8/data/input")
     );
     println!(
         "part 2 accumulator value={}",
-        part_2("puzzles/p_8/data/input".into())
+        part_2("puzzles/p_8/data/input")
     );
 }
 
@@ -42,7 +42,7 @@ impl Into<i32> for RunResult {
     }
 }
 
-fn read_instructions(input_file: String) -> Vec<Instruction> {
+fn read_instructions(input_file: &str) -> Vec<Instruction> {
     let mut instructions: Vec<Instruction> = Vec::new();
     if let Ok(lines) = util::iter_lines(input_file) {
         // Consumes the iterator, returns an (Optional) String
@@ -69,13 +69,13 @@ fn read_instructions(input_file: String) -> Vec<Instruction> {
     instructions
 }
 
-fn part_1(input_file: String) -> i32 {
+fn part_1(input_file: &str) -> i32 {
     let instructions = read_instructions(input_file);
     let accumulator_value = run_instructions(&instructions);
     accumulator_value.into()
 }
 
-fn part_2(input_file: String) -> i32 {
+fn part_2(input_file: &str) -> i32 {
     let mut instructions = read_instructions(input_file);
     // brute force... there is probably a smarter branching algorithm to find these easier, but OoF.
     for i in 0..instructions.len() {
@@ -145,14 +145,14 @@ mod tests {
     #[test]
     fn test_part_1() {
         let expected: i32 = 1654;
-        let result: i32 = super::part_1("data/input".into());
+        let result: i32 = super::part_1("data/input");
         assert_eq!(expected, result);
     }
 
     #[test]
     fn test_part_2() {
         let expected: i32 = 833;
-        let result: i32 = super::part_2("data/input".into());
+        let result: i32 = super::part_2("data/input");
         assert_eq!(expected, result);
     }
 }
