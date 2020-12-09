@@ -3,6 +3,11 @@ use std::io::{self, BufRead};
 use std::iter::Iterator;
 use std::path::Path;
 
+pub use itertools::Itertools;
+pub use regex::Regex;
+
+pub use std::collections::{HashMap, HashSet};
+
 // The output is wrapped in a Result to allow matching on errors
 // Returns an Iterator to the Reader of the lines of the file.
 #[allow(dead_code)]

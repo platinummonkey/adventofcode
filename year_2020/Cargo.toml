@@ -11,12 +11,5 @@ edition = "2018"
 [workspace]
 members = [
     "puzzles/util",
-    "puzzles/p_1_1",
-    "puzzles/p_2",
-    "puzzles/p_3",
-    "puzzles/p_4",
-    "puzzles/p_5",
-    "puzzles/p_6",
-    "puzzles/p_7",
-    "puzzles/p_8",
+    "puzzles/p_*",
 ]
