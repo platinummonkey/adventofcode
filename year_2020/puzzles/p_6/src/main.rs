@@ -24,15 +24,10 @@ fn main() {
                 }
 
                 // intersect for remaining answers
-                let mut combined_group: HashSet<char> = HashSet::new();
-                for answer in current_group
-                    .clone()
+                current_group = current_group
                     .intersection(&current_person)
-                    .collect::<Vec<&char>>()
-                {
-                    combined_group.insert(*answer);
-                }
-                current_group = combined_group.clone();
+                    .cloned()
+                    .collect();
             }
         }
         if current_group.len() != 0 {
