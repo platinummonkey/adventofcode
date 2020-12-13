@@ -11,10 +11,6 @@ fn part_1(filename: &str) -> i64 {
     println!("depart_time={} bus_times={:?}", depart_time, bus_times);
     let mut closest_bus_time_id: i64 = 0;
     for bus_time in bus_times {
-        println!(
-            "bus_time={} closest_bus_time_id={}",
-            bus_time, closest_bus_time_id
-        );
         if depart_time % bus_time == 0 {
             closest_bus_time_id = bus_time;
             break;
@@ -29,10 +25,45 @@ fn part_1(filename: &str) -> i64 {
     closest_bus_time_id * minutes_waiting
 }
 
-fn part_2(filename: &str) -> i64 {
-    let (_, bus_times) = read_raw_data(filename);
+fn real_mod(a: i128, b: i128) -> i128 {
+    ((a % b) + b) % b
+}
 
-    0
+fn part_2(filename: &str) -> i128 {
+    let mut sequenced_bus_times: Vec<(i128, i128)> = Vec::new();
+    if let Ok(lines) = util::iter_lines(filename) {
+        // Consumes the iterator, returns an (Optional) String
+        for (i, line) in lines.enumerate() {
+            if i == 0 {
+                // skip
+            } else {
+                for (j, time) in line.split(",").enumerate() {
+                    match time {
+                        "x" => {
+                            // noop
+                        }
+                        v => {
+                            let val = v.parse::<i128>().expect("invalid integer");
+                            //sequenced_bus_times.push((val - (j as i128), val))
+                            sequenced_bus_times.push((j as i128, val))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    println!("bus_times={:?}", sequenced_bus_times.clone());
+
+    let mut pos: i128 = 0;
+    let mut offset: i128 = 1;
+    for (i, bus_time) in sequenced_bus_times {
+        while real_mod(pos + i, bus_time) != 0 {
+            pos += offset;
+        }
+        offset *= bus_time;
+    }
+
+    pos
 }
 
 fn read_raw_data(filename: &str) -> (i64, Vec<i64>) {
@@ -59,15 +90,15 @@ fn read_raw_data(filename: &str) -> (i64, Vec<i64>) {
 mod tests {
     #[test]
     fn test_part_1() {
-        let expected: i64 = 0;
+        let expected: i64 = 6559;
         let result: i64 = super::part_1("data/input");
         assert_eq!(expected, result);
     }
 
     #[test]
     fn test_part_2() {
-        let expected: i64 = 0;
-        let result: i64 = super::part_2("data/input");
+        let expected: i128 = 626670513163231;
+        let result: i128 = super::part_2("data/input");
         assert_eq!(expected, result);
     }
 }
