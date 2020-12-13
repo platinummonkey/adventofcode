@@ -1,5 +1,5 @@
 [package]
-name = "p_1_1"
+name = "p_1"
 version = "0.1.0"
 authors = ["Cody Lee <cody.lee@datadoghq.com>"]
 edition = "2018"
