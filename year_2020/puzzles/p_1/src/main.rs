@@ -5,7 +5,7 @@ use std::path::Path;
 fn main() {
     // File hosts must exist in current path before this produces output
     let mut all_values: Vec<i32> = Vec::new();
-    if let Ok(lines) = read_lines("puzzles/p_1_1/data/input") {
+    if let Ok(lines) = read_lines("puzzles/p_1/data/input") {
         // Consumes the iterator, returns an (Optional) String
         for line in lines {
             if let Ok(v) = line {
